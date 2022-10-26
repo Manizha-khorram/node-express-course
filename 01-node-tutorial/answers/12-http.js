@@ -15,4 +15,13 @@ const server = http.createServer((req, res) => {
   }
 })
 
+
 server.listen(5000)
+
+
+//lodash
+const _= require('lodash')
+
+const items = [1,[2,[3,[4]]]]
+const newItems = _.flatMapDeep(items)
+console.log(newItems)
