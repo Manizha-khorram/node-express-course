@@ -20,8 +20,8 @@ app.listen(5000,()=>{
 })
 
 //app.get (read data)
-//app.post ()
-//app.put ()
+//app.post (insert data)
+//app.put (update data)
 //app.delete ()
 //app.use ()
 //app.all ( all http methods )
