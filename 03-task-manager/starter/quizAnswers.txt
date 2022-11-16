@@ -1,0 +1,18 @@
+Quickly explain how middleware is used in an Express application.
+
+I think middleware can help us to write much more cleaner code and preventing from duplicating a functionality. Middleware
+can access request object and response object, and many middlewares can be joined by next(), this next() should be called at the
+end of our middleware function to stop the process.
+Also there are bultin middlewares which we can use them in our code, the one which the instructor used was Morgan(tiny).
+
+What does CRUD stand for? Create , Read , Update , Delete
+You are careful to store your sensitive information in a .env file.
+
+How do you get your app to access the information in the .env file? 
+to access the .env file
+step1: assign a parameter (url) to our function(connectDB) and put it in mongoose.connect to return it.
+step2: to access those secret variable we simply need to require that variable. require('dotenv').config()
+step3: for passing in that value from .env to connectDB, we can use the process.env.variableName as connectDB function parameter which it makes the .env file accessible anywhere in our application.
+
+How do you protect the contents of the .env file so that it is not stored in your github repository?
+I will put the .env file into .gitignore file to be ignored when pushing my assignment to my github account. 
