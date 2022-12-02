@@ -8,12 +8,21 @@ const getAllTasks = asyncWrapper (async (req, res) => {
     res.status(200).json({tasks})  // ({ tasks : tasks}) ES6
     //res.status(200).json({tasks , amount:tasks.length}) 
     //res.status(200).json({success: true , data:{tasks , nbHits:tasks.length}}) 
+  
+    console.log(req.ip)
 })
 
 // What was the reason he used the async and awite here???
 const createTask = asyncWrapper (async ( req, res) => {
-        const task = await Task.create(req.body)
+    const regExp = /[A-Z]/ ;
+    const task = await Task.create(req.body)
+    const isMatch = regExp.test(task.name.charAt(0))
+    if(!isMatch){
+        return next (createCustomError('First letter of your task should be capitalized' , 422))
+    }else{
         res.status(201).json({ task })
+    }
+
 })
 
 const getTask = asyncWrapper (async ( req, res, next) => {
@@ -51,7 +60,9 @@ const deleteTask = asyncWrapper (async( req, res) => {
 const updateTask = asyncWrapper (async ( req, res) => {
   
         const {id:taskID} = req.params;
-        const task = await Task.findOneAndUpdate({ _id:taskID} , req.body , {
+        
+        const searchFor = { _id:taskID}
+        const task = await Task.findOneAndUpdate(searchFor , req.body , {
             new : true, 
             runValidators : true ,
         })
@@ -63,6 +74,14 @@ const updateTask = asyncWrapper (async ( req, res) => {
         }
         res.status(200).json({task})
     })
+
+   
+
+
+
+
+
+
 
 module.exports ={
     getAllTasks,

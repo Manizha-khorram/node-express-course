@@ -2,6 +2,7 @@
 const Task = require('./models/task')
 const express = require('express');
 const app = express();
+//const router = express.Router();
 const tasks = require('./routes/tasks')
 const connectDB = require('./db/connect')
 const notFound = require ('./middleware/not-found')
@@ -15,6 +16,30 @@ require('dotenv').config()
 app.use('/api/v1/tasks' , tasks)
 app.use(notFound)
 app.use(errorHandlerMiddleware)
+
+app.get('/api/v1/tasks', function(req , req){
+
+var jsonData = JSON.parse(responseBody);
+var filteredData = jsonData.filter(function(item) {
+  if (!item.tags) {
+    return
+  }
+  return item.tags.includes('Susan');
+});
+console.log("filteredData", filteredData);
+})
+
+
+//taking user IP 
+// router.get('/', (req,res) => {
+//     const ip = req.headers['x-forwarded-for'];
+//     console.log(ip); // ip address of the user
+//   });
+
+// app.get("/",function(req,res){
+//     res.end("Your IP address is " + req.ip);
+//     console.log(req.ip)
+// })
 
 // app.get('/hello' , (req , res) => {
 //     res.send ('Task Manger App')
