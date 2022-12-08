@@ -16,3 +16,4 @@ step3: for passing in that value from .env to connectDB, we can use the process.
 
 How do you protect the contents of the .env file so that it is not stored in your github repository?
 I will put the .env file into .gitignore file to be ignored when pushing my assignment to my github account. 
+

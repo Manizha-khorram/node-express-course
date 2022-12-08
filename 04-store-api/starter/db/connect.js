@@ -1,3 +1,5 @@
+
+//8.the function to connect to database:
 const mongoose = require('mongoose')
 
 const connectDB = (url) => {
