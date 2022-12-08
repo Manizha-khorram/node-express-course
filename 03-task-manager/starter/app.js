@@ -7,9 +7,11 @@ const tasks = require('./routes/tasks')
 const connectDB = require('./db/connect')
 const notFound = require ('./middleware/not-found')
 const errorHandlerMiddleware = require ('./middleware/error-handler')
+const userIPAddress = require('./middleware/user-ip-address')
 //moddleware
 app.use(express.static('./public'))
 app.use(express.json()) 
+app.use(userIPAddress)
  
 require('dotenv').config()
 //routes
@@ -29,17 +31,6 @@ var filteredData = jsonData.filter(function(item) {
 console.log("filteredData", filteredData);
 })
 
-
-//taking user IP 
-// router.get('/', (req,res) => {
-//     const ip = req.headers['x-forwarded-for'];
-//     console.log(ip); // ip address of the user
-//   });
-
-// app.get("/",function(req,res){
-//     res.end("Your IP address is " + req.ip);
-//     console.log(req.ip)
-// })
 
 // app.get('/hello' , (req , res) => {
 //     res.send ('Task Manger App')
