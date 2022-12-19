@@ -5,7 +5,7 @@ const express = require('express');
 const app = express();
 
 //3.importing route
-const mainRouter = require('./routes/main')
+const mainRouter = require('./routes/mainRouter')
 const notFoundMiddleware = require('./middleware/not-found');
 const errorHandlerMiddleware = require('./middleware/error-handler');
 
