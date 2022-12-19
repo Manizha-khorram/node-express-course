@@ -17,7 +17,7 @@ const authenticationMiddleware = async (req, res , next) => {
         if (err){
           res.status(500).json({msg:'Unautorized to access'})
           console.log('Unautorized', err)
-          
+          return
         }
         console.log(result)
         const{ id , username } = result ;
@@ -26,6 +26,8 @@ const authenticationMiddleware = async (req, res , next) => {
       }
       )
       next()
+    
+
      
 }
 
